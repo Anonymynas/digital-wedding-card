@@ -13,6 +13,9 @@
 <body>
   <header class="header">
     <h1 class="logo">Jum Kawin</h1>
+    <button class="mobile-menu-btn">
+      <i class="fas fa-bars"></i>
+    </button>
     <nav>
       <ul class="nav-links">
         <li><a href="#invitations">Sample</a></li>
@@ -167,6 +170,42 @@
     <p>&copy; 2024 Jum Kawin. Crafted with love.</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Mobile menu functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+
+      mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.header')) {
+          navLinks.classList.remove('active');
+        }
+      });
+
+      // Close menu when clicking a link
+      navLinks.addEventListener('click', function() {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    function viewInvitation(sample) {
+      window.location.href = `pages/sample/${sample}/${sample}.html`;
+    }
+  </script>
 </body>
 </html>
